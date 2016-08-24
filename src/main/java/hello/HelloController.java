@@ -13,7 +13,7 @@ public class HelloController {
     
 }
 class Persona{
-	private String name="Juan Manuel2";
+	private String name="Juan Manuel3";
 	
 	public String getName(){
 		return name;
