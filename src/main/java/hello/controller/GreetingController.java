@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hello;
+package hello.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -22,7 +22,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hello.data.User;
+import hello.data.Usuario;
+import hello.model.Greeting;
 
 @RestController
 public class GreetingController {
@@ -32,9 +33,9 @@ public class GreetingController {
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping("/greeting")
-	public Greeting greeting(@AuthenticationPrincipal User user) {
+	public Greeting greeting(@AuthenticationPrincipal Usuario user) {
 		return new Greeting(counter.incrementAndGet(),
-				String.format(template, user.getName()));
+				String.format(template, user.getNombre()));
 	}
 
 }

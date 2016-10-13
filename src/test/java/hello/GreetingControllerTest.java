@@ -43,6 +43,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.context.WebApplicationContext;
 
+import hello.controller.GreetingController;
+
 /**
  * @author Roy Clarkson
  */
@@ -114,6 +116,8 @@ public class GreetingControllerTest {
 	@Test
 	public void greetingAuthorized() throws Exception {
 		String accessToken = getAccessToken("roy", "spring");
+		
+		System.out.println(accessToken);
 
 		// @formatter:off
 		mvc.perform(get("/greeting")

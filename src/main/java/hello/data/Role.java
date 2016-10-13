@@ -37,11 +37,11 @@ public class Role implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer idRol;
 
 	@NotEmpty
-	private String name;
+	private String nombre;
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
@@ -49,23 +49,23 @@ public class Role implements GrantedAuthority {
 
 	@Override
 	public String getAuthority() {
-		return name;
+		return nombre;
 	}
 
 	public Integer getId() {
-		return id;
+		return idRol;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdRol(Integer idRol) {
+		this.idRol = idRol;
 	}
 
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Set<User> getUsers() {

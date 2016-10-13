@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package hello;
+package hello.services;
 
 import java.util.Collection;
 
-import hello.data.User;
-import hello.data.UserRepository;
+import hello.data.Usuario;
+import hello.data.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,27 +31,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	private final UserRepository userRepository;
+	private final UsuarioRepository usuarioRepository;
 
 	@Autowired
-	public CustomUserDetailsService(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public CustomUserDetailsService(UsuarioRepository usuarioRepository) {
+		this.usuarioRepository = usuarioRepository;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByLogin(username);
+		Usuario user = usuarioRepository.findByUsuario(username);
 		if (user == null) {
 			throw new UsernameNotFoundException(String.format("User %s does not exist!", username));
 		}
 		return new UserRepositoryUserDetails(user);
 	}
 
-	private final static class UserRepositoryUserDetails extends User implements UserDetails {
+	private final static class UserRepositoryUserDetails extends Usuario implements UserDetails {
 
 		private static final long serialVersionUID = 1L;
 
-		private UserRepositoryUserDetails(User user) {
+		private UserRepositoryUserDetails(Usuario user) {
 			super(user);
 		}
 
@@ -62,7 +62,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 		@Override
 		public String getUsername() {
-			return getLogin();
+			return getUsuario();
 		}
 
 		@Override
@@ -83,6 +83,11 @@ public class CustomUserDetailsService implements UserDetailsService {
 		@Override
 		public boolean isEnabled() {
 			return true;
+		}
+
+		@Override
+		public String getPassword() {
+			return getContrasena();
 		}
 
 	}
