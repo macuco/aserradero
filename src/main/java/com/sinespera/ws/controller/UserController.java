@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package hello.controller;
+package com.sinespera.ws.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hello.data.Usuario;
-import hello.data.UsuarioRepository;
+import com.sinespera.data.UsuarioRepository;
+import com.sinespera.model.Usuario;
 
 @RestController
 public class UserController {

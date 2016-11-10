@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2014 the original author or authors.
  *
@@ -16,15 +17,26 @@
 
 package com.sinespera.controller;
 
+import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class HomeController {
+import com.sinespera.model.Greeting;
+import com.sinespera.model.Usuario;
 
-	@RequestMapping("/")
-	public String home() {
-		return "home";
+@RestController
+public class GreetingController {
+
+	private static final String template = "Hello, %s!";
+
+	private final AtomicLong counter = new AtomicLong();
+
+	@RequestMapping("/greeting")
+	public Greeting greeting(@AuthenticationPrincipal Usuario user) {
+		return new Greeting(counter.incrementAndGet(),
+				String.format(template, user.getNombre()));
 	}
 
 }

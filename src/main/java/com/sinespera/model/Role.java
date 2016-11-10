@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hello.data;
+package com.sinespera.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,25 +38,25 @@ public class Role implements GrantedAuthority {
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer idRol;
+	private String idRol;
 
 	@NotEmpty
 	private String nombre;
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-	private Set<User> users = new HashSet<User>();
+	private Set<Usuario> users = new HashSet<Usuario>();
 
 	@Override
 	public String getAuthority() {
 		return nombre;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return idRol;
 	}
 
-	public void setIdRol(Integer idRol) {
+	public void setIdRol(String idRol) {
 		this.idRol = idRol;
 	}
 
@@ -68,12 +68,16 @@ public class Role implements GrantedAuthority {
 		this.nombre = nombre;
 	}
 
-	public Set<User> getUsers() {
+	public Set<Usuario> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Set<User> users) {
+	public void setUsers(Set<Usuario> users) {
 		this.users = users;
+	}
+	
+	public String toString(){
+		return this.nombre;
 	}
 
 }

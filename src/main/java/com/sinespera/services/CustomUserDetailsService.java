@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 
-package hello.services;
+package com.sinespera.services;
 
 import java.util.Collection;
-
-import hello.data.Usuario;
-import hello.data.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +25,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.sinespera.data.UsuarioRepository;
+import com.sinespera.model.Usuario;
+
+/**
+ * Servicio utilizado para configurar la seguridad 
+ * @author macuco
+ *
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

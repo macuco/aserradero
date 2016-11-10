@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
-package hello;
+package com.sinespera;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import java.util.UUID;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
 import org.springframework.util.Base64Utils;
 
-import hello.data.Usuario;
-import hello.data.UsuarioRepository;
+import com.sinespera.data.RolesRepository;
+import com.sinespera.data.UsuarioRepository;
+import com.sinespera.model.Role;
+import com.sinespera.model.Usuario;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,11 +50,28 @@ public class Application {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(UsuarioRepository repository) {
+	public CommandLineRunner demo(UsuarioRepository repository, RolesRepository rolesRepo) {
 		return (args) -> {
 			// save a couple of customers
-			//repository.save(new Usuario("uno","Juan Manuel"));
-			//repository.save(new Usuario("dos", "Maria isabel"));
+			
+			UUID uuid = UUID.randomUUID();
+			String randomUUIDString = uuid.toString();
+			
+			Role rol = new Role();
+			rol.setIdRol(uuid.toString());
+			rol.setNombre("ADMIN");
+			//rolesRepo.save(rol);
+			
+			Usuario u = new Usuario("uno","Juan Manuel");
+			u.setUsuario("macuco");
+			u.setContrasena("macuco");
+			//u.getRoles().add(rol);
+			//repository.save(u);
+			u = new Usuario("dos", "Maria isabel");
+			u.setUsuario("isa");
+			u.setContrasena("isa");
+			//u.getRoles().add(rol);
+			//repository.save(u);
 
 			// fetch all customers
 			log.info("Customers found with findAll():");
@@ -74,6 +95,7 @@ public class Application {
 				log.info(bauer.toString());
 			}
             log.info("");
+            
 		};
 	}
 

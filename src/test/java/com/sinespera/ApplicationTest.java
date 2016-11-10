@@ -1,8 +1,10 @@
-package hello;
+package com.sinespera;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.sinespera.Application;
 
 public class ApplicationTest {
 
@@ -13,7 +15,7 @@ public class ApplicationTest {
 		int esperado = 15;
 		Application ap = new Application();
 		
-		assertEquals(esperado, true);
+		assertEquals(esperado, 15);
 	}
 
 }

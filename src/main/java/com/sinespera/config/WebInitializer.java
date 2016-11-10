@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package hello.config;
+package com.sinespera.config;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 
-import hello.Application;
+import com.sinespera.Application;
 
 public class WebInitializer extends SpringBootServletInitializer {
 

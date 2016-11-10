@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hello.config;
+package com.sinespera.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +24,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import hello.services.CustomUserDetailsService;
+import com.sinespera.services.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity

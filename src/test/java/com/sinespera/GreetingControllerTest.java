@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hello;
+package com.sinespera;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
@@ -43,7 +43,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.context.WebApplicationContext;
 
-import hello.controller.GreetingController;
+import com.sinespera.Application;
+import com.sinespera.controller.GreetingController;
 
 /**
  * @author Roy Clarkson
@@ -115,7 +116,7 @@ public class GreetingControllerTest {
 
 	@Test
 	public void greetingAuthorized() throws Exception {
-		String accessToken = getAccessToken("roy", "spring");
+		String accessToken = getAccessToken("macuco", "macuco");
 		
 		System.out.println(accessToken);
 
@@ -124,7 +125,7 @@ public class GreetingControllerTest {
 				.header("Authorization", "Bearer " + accessToken))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.id", is(1)))
-				.andExpect(jsonPath("$.content", is("Hello, Roy!")));
+				.andExpect(jsonPath("$.content", is("Hello, Juan Manuel!")));
 		// @formatter:on
 
 		// @formatter:off
@@ -132,7 +133,7 @@ public class GreetingControllerTest {
 				.header("Authorization", "Bearer " + accessToken))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.id", is(2)))
-				.andExpect(jsonPath("$.content", is("Hello, Roy!")));
+				.andExpect(jsonPath("$.content", is("Hello, Juan Manuel!")));
 		// @formatter:on
 
 		// @formatter:off
@@ -140,7 +141,7 @@ public class GreetingControllerTest {
 				.header("Authorization", "Bearer " + accessToken))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.id", is(3)))
-				.andExpect(jsonPath("$.content", is("Hello, Roy!")));
+				.andExpect(jsonPath("$.content", is("Hello, Juan Manuel!")));
 		// @formatter:on
 	}
 
@@ -148,9 +149,9 @@ public class GreetingControllerTest {
 	public void usersEndpointAuthorized() throws Exception {
 		// @formatter:off
 		mvc.perform(get("/users")
-				.header("Authorization", "Bearer " + getAccessToken("roy", "spring")))
+				.header("Authorization", "Bearer " + getAccessToken("macuco", "macuco")))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$", hasSize(3)));
+				.andExpect(jsonPath("$", hasSize(2)));
 		// @formatter:on
 	}
 
@@ -158,7 +159,7 @@ public class GreetingControllerTest {
 	public void usersEndpointAccessDenied() throws Exception {
 		// @formatter:off
 		mvc.perform(get("/users")
-				.header("Authorization", "Bearer " + getAccessToken("craig", "spring")))
+				.header("Authorization", "Bearer " + getAccessToken("isa", "isa")))
 				.andExpect(status().is(403));
 		// @formatter:on
 	}
