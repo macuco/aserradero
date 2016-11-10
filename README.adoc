@@ -96,3 +96,5 @@ curl -X POST -k -vu clientapp:123456 https://localhost:8443/oauth/token -H "Acce
 ```
 
 The `-k` parameter is necessary to allow connections to SSL sites without valid certificates or the self signed certificate which is created for this project.
+
+OTRA COSA
